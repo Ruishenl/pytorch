@@ -137,7 +137,9 @@ def _load_global_has_positions() -> bool:
 
 
 def _reconstruction_failure_gb_stack_source_attribution() -> str:
-    if IS_MACOS or (sys.version_info >= (3, 11) and _load_global_has_positions()):
+    if sys.version_info < (3, 14) and (
+        IS_MACOS or (sys.version_info >= (3, 11) and _load_global_has_positions())
+    ):
         var_repr = "NullVariable originated from:"
     else:
         var_repr = (
